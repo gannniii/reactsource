@@ -7,6 +7,17 @@ import MyComponent from "./MyComponent";
 // import Product from "./Product";
 // import ParentCardLayout from "./ParentCardLayout";
 import Counter from "./Counter";
+import InputSample from "./InputSample";
+import InputMultipleSample from "./InputMultipleSample";
+import Say from "./Say";
+import Movie from "./Movie";
+import Hello from "./components/Hello";
+import Home from "./components/Home";
+import MyApp from "./components/MyApp";
+import CounterRef from "./Counter";
+import InputRef from "./InputRef";
+import UserProfile from "./UserProfile";
+import Form from "./Form";
 
 function App() {
   return (
@@ -17,7 +28,18 @@ function App() {
       {/* <Card /> */}
       {/* <Product /> */}
       {/* <ParentCardLayout /> */}
-      <Counter />
+      {/* <Counter /> */}
+      {/* <InputSample /> */}
+      {/* <InputMultipleSample /> */}
+      {/* <Say /> */}
+      {/* <Movie /> */}
+      {/* <Hello /> */}
+      {/* <Home /> */}
+      {/* <MyApp /> */}
+      {/* <CounterRef /> */}
+      {/* <InputRef /> */}
+      {/* <UserProfile /> */}
+      <Form />
     </>
   );
 }
