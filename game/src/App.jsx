@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Board from "./Board";
+import Square from "./Square";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  console.log("history ", history);
+
+  //순서 변화
+  const [xIsNext, setXIsNext] = useState(true);
+  //이동 변화
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove];
+
+  const handlePlay = (nextSquare) => {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquare];
+    setXIsNext(!xIsNext);
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+  };
+
+  const jumpTo = (nextMove) => {
+    setCurrentMove(nextMove);
+    setXIsNext(nextMove % 2 == 0);
+  };
+
+  const moves = history.map((squares, order) => {
+    let desc;
+
+    if (order > 0) {
+      desc = "Go to movie #" + order;
+    } else {
+      desc = "Go to game start";
+    }
+
+    return (
+      <li key={order}>
+        <button onClick={() => jumpTo(order)}>{desc}</button>
+      </li>
+    );
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="game">
+        <div className="mt-5">
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        </div>
+        <ul>{moves}</ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

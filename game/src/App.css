@@ -24,7 +24,6 @@
 .square:focus {
   outline: none;
 }
-
 .status {
   display: flex;
   font-weight: bold;
